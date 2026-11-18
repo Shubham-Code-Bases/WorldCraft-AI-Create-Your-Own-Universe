@@ -35,6 +35,19 @@ namespace AiWorldGeneration.ASR
         bool isRecording;
 
         /// <summary>
+        /// Request microphone permission on Android if not already granted.
+        /// </summary>
+        void Start()
+        {
+#if UNITY_ANDROID
+            if (!UnityEngine.Android.Permission.HasUserAuthorizedPermission(UnityEngine.Android.Permission.Microphone))
+            {
+                UnityEngine.Android.Permission.RequestUserPermission(UnityEngine.Android.Permission.Microphone);
+            }
+#endif
+        }
+
+        /// <summary>
         /// Starts the recording of the audio.
         /// </summary>
         public void StartRecording()

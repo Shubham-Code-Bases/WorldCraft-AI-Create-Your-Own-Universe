@@ -14,17 +14,18 @@
 - [x] Desktop fallback mode
 - [x] TCP client-server communication
 - [x] Configurable server IP/port (api.json)
+- [x] VR Creator scene added to EditorBuildSettings
+- [x] Android permissions configured (`INTERNET`, `RECORD_AUDIO`, cleartext HTTP support)
+- [x] Android runtime microphone permission check in `AudioRecorder.cs`
 
 ## ⚠️ Remaining Requirements Before Submission
-- [ ] **Hand Tracking**: Not confirmed implemented. Must verify or implement for competition.
-  - Check XR Hands package in Package Manager
-  - Check if OpenXR Hand Tracking feature group is enabled
-  - If not: implement hand-based UI interaction or document as limitation
-- [ ] **Build & Sign APK**: Android keystore must be configured in Unity Player Settings
-- [ ] **Python Backend**: Must be accessible from Quest device on same network
-- [ ] **Scene in Build Settings**: "VR Creator" scene must be added to Build Settings
-- [ ] **Microphone permission**: Android manifest must include RECORD_AUDIO permission
-- [ ] **Internet permission**: Android manifest must include INTERNET permission
+- [ ] **Hand Tracking**: Verified NOT currently installed (`com.unity.xr.hands` is absent from `Packages/manifest.json`).
+  - To add for competition: Window → Package Manager → Add package by name: `com.unity.xr.hands`
+  - In Project Settings → XR Plug-in Management → OpenXR: enable **Hand Tracking Subsystem**
+  - If controllers-only is acceptable: document Touch Controllers as primary input mechanism
+- [ ] **Build & Sign APK**: For official store/App Lab release, configure Android keystore in Player Settings (debug key works for developer sideloading)
+- [ ] **Python Backend on LAN**: Start server on host PC and set `serverDefaultIp` in `api.json` to host's WiFi IPv4 address
+- [ ] **Demo Video & Screenshots**: Record Quest gameplay and add to README placeholders
 
 ## 🏗️ Build Instructions (Android / Meta Quest)
 

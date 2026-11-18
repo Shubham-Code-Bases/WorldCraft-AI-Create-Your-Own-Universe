@@ -14,6 +14,10 @@
 - Replaced `127.0.0.1` with example LAN IP `192.168.1.100` to remind users to set their server IP
 - Added `api.example.json` as a template for new setup
 - Added VR Creator scene to EditorBuildSettings
+- Added `Assets/Plugins/Android/AndroidManifest.xml` with Quest VR category, cleartext traffic, `INTERNET`, and `RECORD_AUDIO` permissions
+- Added runtime microphone permission request in `AudioRecorder.cs` for Android/Quest
+- Enabled `ForceInternetPermission: 1` and `useCustomMainManifest: 1` in `ProjectSettings.asset`
+- Set `microphoneUsageDescription` for audio input in VR
 
 ### Documentation Added
 - `COMPETITION_NOTES.md` – competition checklist, build instructions, blockers
