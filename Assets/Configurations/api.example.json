@@ -1,0 +1,9 @@
+{
+    "_comment": "WorldCraft AI Configuration File. Copy this to api.json and update the values.",
+    "audioPath": "Temp/audio.wav",
+    "baseImage": "Assets/Textures/Rewritable Texture.PNG",
+    "maskPath": "Temp/mask.png",
+    "serverDefaultIp": "192.168.X.X",
+    "serverDefaultPort": 9000,
+    "pythonFallbackApiFile": ""
+}

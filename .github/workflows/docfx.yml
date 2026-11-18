@@ -1,0 +1,56 @@
+name: Build DocFX documentation
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  # Build the documentation
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.115'
+
+      - name: Install DocFX
+        run: dotnet tool install -g docfx
+
+      - name: Use README.md as index.md
+        run: cp README.md Documentation/index.md
+
+      - name: Build
+        run: docfx Documentation/docfx.json
+
+      # Upload the generated documentation
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: _site
+          path: _site # Must equals the 'build.dest' value on your docfx.json
+
+  # Deploy the generated documentation to the gh-pages branch
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Download the generated documentation
+      - name: Download site artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: _site
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: _site
